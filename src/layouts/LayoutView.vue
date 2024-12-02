@@ -12,9 +12,6 @@ import { RouterLink, RouterView } from 'vue-router'
     </main>
     <footer>
       <p id="copyright">Copyright © Note 2024 | All Rights Reserved.</p>
-      <a href="https://www.instagram.com/" target="_blank"
-        ><img src="../assets/instagram.png" alt="" id="instagram"
-      /></a>
     </footer>
   </div>
 </template>
@@ -22,10 +19,20 @@ import { RouterLink, RouterView } from 'vue-router'
 @use '../assets/general.scss';
 #layout {
   min-height: 100dvh;
+  header,
+  footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 5dvh;
+  }
+  p {
+    font-size: 18px;
+  }
   header {
     background-color: general.$lightGreen;
     p {
-      text-align: center;
+      color: general.$darkGreen;
     }
   }
   main {
@@ -36,7 +43,9 @@ import { RouterLink, RouterView } from 'vue-router'
   }
   footer {
     background-color: general.$darkGreen;
-    color: general.$lightColor;
+    p {
+      color: general.$lightColor;
+    }
   }
 }
 </style>
