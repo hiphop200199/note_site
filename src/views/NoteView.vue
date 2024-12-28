@@ -1,16 +1,28 @@
-<script setup></script>
+<script setup>
+import { useNoteStore } from '@/stores/store'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+const noteStore = useNoteStore()
+const route = useRoute()
+const note = computed(() => noteStore.product)
+const noteId = route.params.id
+
+const getNote = (id) => {
+  noteStore.getNote(id)
+}
+getNote(noteId)
+</script>
 
 <template>
   <div class="box-layout">
-    <h1>Lorem, ipsum.</h1>
+    <h1>{{ note.subject }}</h1>
     <p>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem quidem nostrum sit aperiam
-      officiis corrupti illo, voluptates maiores consequatur repellendus.
+      {{ note.article }}
     </p>
     <section id="tags">
       <span class="tag">#Normal</span><span class="tag">#HTML</span><span class="tag">#Css</span>
     </section>
-    <span>2022-03-22</span>
+    <span>{{ note.article_date }}</span>
   </div>
 </template>
 <style lang="scss" scoped>

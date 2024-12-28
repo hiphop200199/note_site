@@ -1,4 +1,13 @@
-<script setup></script>
+<script setup>
+import { useAuthStore } from '@/stores/store'
+const authStore = useAuthStore()
+let account = ''
+let password = ''
+const handleLogin = ($event, account, password) => {
+  $event.preventDefault()
+  authStore.handleLogIn(account, password)
+}
+</script>
 
 <template>
   <div>
@@ -6,7 +15,7 @@
       <h1>Login right now!</h1>
       <input type="email" placeholder="email..." v-model="account" required />
       <input type="password" placeholder="password..." v-model="password" required />
-      <p id="message" ref="message"></p>
+      <p id="message" ref="message">{{ authStore.message }}</p>
       <section id="buttons">
         <button type="submit">login</button>
         <router-link to="/register"><button>register</button></router-link>

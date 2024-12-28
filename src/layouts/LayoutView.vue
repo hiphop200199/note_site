@@ -1,17 +1,25 @@
 <script setup>
+import { useAuthStore } from '@/stores/store'
 import { RouterLink, RouterView } from 'vue-router'
+const authStore = useAuthStore()
 </script>
 
 <template>
   <div id="layout">
     <header>
-      <p>It's time to write some notes.</p>
+      <p>
+        {{
+          authStore.username
+            ? 'Welcome ' + authStore.username + '!'
+            : "It's time to write some notes."
+        }}
+      </p>
     </header>
     <main>
       <RouterView />
     </main>
     <footer>
-      <p id="copyright">Copyright © Note 2024 | All Rights Reserved.</p>
+      <p id="copyright">Copyright © EricWoo 2024 | All Rights Reserved.</p>
     </footer>
   </div>
 </template>

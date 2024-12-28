@@ -1,4 +1,20 @@
-<script setup></script>
+<script setup>
+import { useAuthStore } from '@/stores/store'
+import { onMounted, ref } from 'vue'
+const authStore = useAuthStore()
+const account = ref('')
+const password = ref('')
+const password_confirmation = ref('')
+const name = ref('')
+
+let handleRegister
+onMounted(() => {
+  handleRegister = ($event) => {
+    $event.preventDefault()
+    authStore.handleRegister(name.value, account.value, password.value, password_confirmation.value)
+  }
+})
+</script>
 
 <template>
   <div>
@@ -24,7 +40,7 @@
         required
         minlength="8"
       />
-      <p id="message" ref="message"></p>
+      <p id="message" ref="message">{{ authStore.message }}</p>
       <div id="buttons">
         <button type="submit">register</button>
       </div>
