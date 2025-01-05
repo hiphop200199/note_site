@@ -14,7 +14,7 @@ axios.defaults.withCredentials = true
 
 axios.interceptors.request.use(async (config) => {
   if (config.method.toLowerCase() !== 'get') {
-    await axios.get('/csrf-cookie').then()
+    await axios.get('sanctum/csrf-cookie').then()
     config.headers['X-XSRF-TOKEN'] = Cookies.get('XSRF-TOKEN')
   }
   return config
