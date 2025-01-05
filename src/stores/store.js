@@ -4,7 +4,7 @@ import router from '@/router'
 import axios from 'axios'
 
 axios.defaults.withCredentials = true
-//axios.defaults.withXSRFToken = true
+axios.defaults.withXSRFToken = true
 
 const baseUrl = 'https://note-site-backend.vercel.app/'
 
