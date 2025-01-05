@@ -13,7 +13,7 @@ export const useAuthStore = defineStore('auth', () => {
     message.value = 'wait...'
 
     myAxios
-      .post('register', {
+      .post('/api/register', {
         name: name,
         email: email,
         password: password,
@@ -37,7 +37,7 @@ export const useAuthStore = defineStore('auth', () => {
     message.value = 'wait...'
 
     myAxios
-      .post('login', {
+      .post('/api/login', {
         email: email,
         password: password,
       })
@@ -65,7 +65,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
   const handleLogout = () => {
     myAxios
-      .post('logout')
+      .post('/api/logout')
       .then(() => {
         sessionStorage.removeItem('id')
         sessionStorage.removeItem('token')
@@ -96,7 +96,7 @@ export const useNoteStore = defineStore('note', () => {
   const getNotes = () => {
     isLoading.value = true
     myAxios
-      .get('notes', { params: { id: sessionStorage.getItem('id') } })
+      .get('/api/notes', { params: { id: sessionStorage.getItem('id') } })
       .then((res) => {
         notes.value = res.data
         isLoading.value = false
