@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import router from '@/router'
 import axios from 'axios'
 
+axios.defaults.xsrfHeaderName = 'X-XSRF-TOKEN'
 axios.defaults.withCredentials = true
 axios.defaults.withXSRFToken = true
 
