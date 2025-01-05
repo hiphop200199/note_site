@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import router from '@/router'
-import axios from './axios'
+import myAxios from './my-axios'
 
 export const useAuthStore = defineStore('auth', () => {
   const username = ref(sessionStorage.getItem('name'))
@@ -12,7 +12,7 @@ export const useAuthStore = defineStore('auth', () => {
   const handleRegister = (name, email, password, passwordConfirm) => {
     message.value = 'wait...'
 
-    axios
+    myAxios
       .post('register', {
         name: name,
         email: email,
@@ -36,7 +36,7 @@ export const useAuthStore = defineStore('auth', () => {
   const handleLogIn = (email, password) => {
     message.value = 'wait...'
 
-    axios
+    myAxios
       .post('login', {
         email: email,
         password: password,
@@ -64,7 +64,7 @@ export const useAuthStore = defineStore('auth', () => {
       })
   }
   const handleLogout = () => {
-    axios
+    myAxios
       .post('logout')
       .then(() => {
         sessionStorage.removeItem('id')
@@ -95,7 +95,7 @@ export const useNoteStore = defineStore('note', () => {
   const notes = ref([])
   const getNotes = () => {
     isLoading.value = true
-    axios
+    myAxios
       .get('notes', { params: { id: sessionStorage.getItem('id') } })
       .then((res) => {
         notes.value = res.data
