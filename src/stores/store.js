@@ -88,6 +88,7 @@ export const useAuthStore = defineStore('auth', () => {
 export const useNoteStore = defineStore('note', () => {
   const isLoading = ref(true)
   const notes = ref([])
+  const note = ref({})
   const getNotes = () => {
     isLoading.value = true
     myAxios
@@ -99,10 +100,21 @@ export const useNoteStore = defineStore('note', () => {
       })
       .catch((err) => console.log(err))
   }
-
+  const getNote = (id) => {
+    isLoading.value = true
+    myAxios
+      .get('/api/note/' + id, { params: { id: sessionStorage.getItem('id') } })
+      .then((res) => {
+        note.value = res.data
+        isLoading.value = false
+        console.log(res)
+      })
+      .catch((err) => console.log(err))
+  }
   return {
     isLoading,
     notes,
     getNotes,
+    getNote,
   }
 })
