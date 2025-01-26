@@ -103,7 +103,7 @@ export const useNoteStore = defineStore('note', () => {
   const getNote = (id) => {
     isLoading.value = true
     myAxios
-      .get('/api/note/' + id, { params: { id: sessionStorage.getItem('id') } })
+      .get('/api/note/' + id)
       .then((res) => {
         note.value = res.data
         isLoading.value = false
