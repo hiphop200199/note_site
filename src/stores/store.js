@@ -105,7 +105,7 @@ export const useNoteStore = defineStore('note', () => {
     myAxios
       .get('/api/note/' + id)
       .then((res) => {
-        note.value = res.data
+        note.value = res.data[0]
         isLoading.value = false
         console.log(res)
       })

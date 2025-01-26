@@ -20,7 +20,7 @@ getNote(noteId)
       {{ note.article }}
     </p>
     <section id="tags">
-      <span class="tag">#Normal</span><span class="tag">#HTML</span><span class="tag">#Css</span>
+      <!-- <span class="tag">#Normal</span><span class="tag">#HTML</span><span class="tag">#Css</span> -->
     </section>
     <span>{{ note.article_date }}</span>
   </div>
