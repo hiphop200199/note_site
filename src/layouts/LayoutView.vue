@@ -2,6 +2,10 @@
 import { useAuthStore } from '@/stores/store'
 import { RouterLink, RouterView } from 'vue-router'
 const authStore = useAuthStore()
+
+const handleLogout = () => {
+  authStore.handleLogout()
+}
 </script>
 
 <template>
@@ -14,6 +18,10 @@ const authStore = useAuthStore()
             : "It's time to write some notes."
         }}
       </p>
+      <section id="function">
+        <router-link to="/create">💡</router-link>
+        <button id="logout" @click="handleLogout">🚪</button>
+      </section>
     </header>
     <main>
       <RouterView />
@@ -39,6 +47,16 @@ const authStore = useAuthStore()
   }
   header {
     background-color: general.$lightGreen;
+    #function {
+      align-self: flex-end;
+      * {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        margin-inline-start: 3px;
+      }
+    }
     p {
       color: general.$darkGreen;
     }
