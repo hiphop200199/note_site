@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 const noteStore = useNoteStore()
 const route = useRoute()
-const note = computed(() => noteStore.product)
+const note = computed(() => noteStore.note)
 const noteId = route.params.id
 
 const getNote = (id) => {

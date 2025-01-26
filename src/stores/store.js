@@ -114,6 +114,7 @@ export const useNoteStore = defineStore('note', () => {
   return {
     isLoading,
     notes,
+    note,
     getNotes,
     getNote,
   }
