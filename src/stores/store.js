@@ -89,7 +89,8 @@ export const useNoteStore = defineStore('note', () => {
   const isLoading = ref(true)
   const notes = ref([])
   const note = ref({})
-  const getNotes = () => {
+  const message = ref('')
+  const getList = () => {
     isLoading.value = true
     myAxios
       .get('/api/notes', { params: { id: sessionStorage.getItem('id') } })
@@ -100,7 +101,7 @@ export const useNoteStore = defineStore('note', () => {
       })
       .catch((err) => console.log(err))
   }
-  const getNote = (id) => {
+  const get = (id) => {
     isLoading.value = true
     myAxios
       .get('/api/note/' + id)
@@ -111,11 +112,31 @@ export const useNoteStore = defineStore('note', () => {
       })
       .catch((err) => console.log(err))
   }
+  const add = (subject, content, date) => {
+    message.value = 'wait...'
+    isLoading.value = true
+    myAxios
+      .post('/api/add', {
+        user_id: sessionStorage.getItem('id'),
+        subject: subject,
+        content: content,
+        date: date,
+      })
+      .then((res) => {
+        message.value = ''
+        isLoading.value = false
+        console.log(res)
+        location = '/list'
+      })
+      .catch((err) => console.log(err))
+  }
   return {
     isLoading,
     notes,
     note,
-    getNotes,
-    getNote,
+    message,
+    getList,
+    get,
+    add,
   }
 })

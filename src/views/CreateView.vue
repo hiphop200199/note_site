@@ -1,22 +1,33 @@
-<script setup></script>
+<script setup>
+import { useNoteStore } from '@/stores/store'
+import { ref } from 'vue'
+const subject = ref('')
+const content = ref('')
+const date = ref('')
+const noteStore = useNoteStore()
+const handleSubmit = ($event) => {
+  $event.preventDefault()
+  noteStore.add(subject.value, content.value, date.value)
+}
+</script>
 
 <template>
   <div>
-    <form>
+    <form @submit="handleSubmit">
       <h1>New note.</h1>
-      <input type="text" name="" id="" placeholder="subject..." />
-      <textarea name="" id="" placeholder="content..."></textarea>
-      <p>images.</p>
+      <input type="text" v-model="subject" placeholder="subject..." />
+      <textarea v-model="content" placeholder="content..."></textarea>
+      <!-- <p>images.</p>
       <input type="file" name="" id="" multiple />
       <p>tags.</p>
-      <select name="" id="" multiple>
-        <option value="">Normal</option>
-        <option value="">HTML</option>
-        <option value="">Javascript</option>
-        <option value="">Css</option>
-        <option value="">Php</option>
-      </select>
-      <input type="date" name="" id="" />
+      <input type="checkbox" v-model="tags" class="tags" value="1" />
+      <input type="checkbox" v-model="tags" class="tags" value="2" />
+      <input type="checkbox" v-model="tags" class="tags" value="3" />
+      <input type="checkbox" v-model="tags" class="tags" value="4" />
+      <input type="checkbox" v-model="tags" class="tags" value="5" /> -->
+      <p>date.</p>
+      <input type="date" v-model="date" />
+      <p>{{ noteStore.message }}</p>
       <button type="submit">create</button>
     </form>
   </div>
