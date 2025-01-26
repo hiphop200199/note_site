@@ -123,6 +123,12 @@ export const useNoteStore = defineStore('note', () => {
         date: date,
       })
       .then((res) => {
+        if (res.data == 2) {
+          message.value = 'database error.'
+          isLoading.value = false
+          console.log(res)
+          return
+        }
         message.value = ''
         isLoading.value = false
         console.log(res)
