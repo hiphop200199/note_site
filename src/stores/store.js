@@ -29,7 +29,6 @@ export const useAuthStore = defineStore('auth', () => {
         sessionStorage.setItem('name', res.data[0].name)
         username.value = sessionStorage.getItem('name')
         router.push({ path: '/list' })
-        //location.href = location.origin + '/eric_bookstore/'
       })
       .catch((err) => console.log(err))
   }
@@ -45,21 +44,18 @@ export const useAuthStore = defineStore('auth', () => {
         message.value = ''
         sessionStorage.setItem('token', document.cookie.slice(document.cookie.indexOf('=') + 1))
         isLogin.value = sessionStorage.getItem('token')
-        /*  sessionStorage.setItem('id', res.data[0].id)
-          memberId.value = sessionStorage.getItem('id')
-          sessionStorage.setItem('name', res.data[0].name)
-          username.value = sessionStorage.getItem('name') */
+        sessionStorage.setItem('id', res.data[0].id)
+        memberId.value = sessionStorage.getItem('id')
+        sessionStorage.setItem('name', res.data[0].name)
+        username.value = sessionStorage.getItem('name')
         console.log(res)
 
         router.push({ path: '/list' })
-        //location.href = location.origin + '/eric_bookstore/'
       })
       .catch((err) => {
-        /*  if (
-            err['response']['data']['message'] === 'These credentials do not match our records.'
-          ) {
-            message.value = '帳號或密碼有誤'
-          } */
+        if (err['response']['data']['message'] === 'These credentials do not match our records.') {
+          message.value = 'Incorrect username or password.'
+        }
         console.log(err)
       })
   }
@@ -73,8 +69,7 @@ export const useAuthStore = defineStore('auth', () => {
         memberId.value = sessionStorage.getItem('id')
         isLogin.value = sessionStorage.getItem('token')
         username.value = sessionStorage.getItem('name')
-        //router.push({ path: '/' })
-        location.href = location.origin + '/note_site/'
+        router.push({ path: '/' })
       })
       .catch((err) => console.log(err))
   }
