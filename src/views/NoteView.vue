@@ -22,7 +22,7 @@ getNote(noteId)
     <section id="tags">
       <!-- <span class="tag">#Normal</span><span class="tag">#HTML</span><span class="tag">#Css</span> -->
     </section>
-    <span>{{ note.article_date }}</span>
+    <span>{{ note.note_date }}</span>
   </div>
 </template>
 <style lang="scss" scoped>
