@@ -27,7 +27,7 @@ const router = createRouter({
       component: ListView,
     },
     {
-      path: '/note',
+      path: '/note/:id',
       name: 'note',
       component: NoteView,
     },
