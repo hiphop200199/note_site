@@ -37,6 +37,7 @@ const handleLogout = () => {
   min-height: 100dvh;
   header,
   footer {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,10 +49,14 @@ const handleLogout = () => {
   header {
     background-color: general.$lightGreen;
     #function {
-      align-self: flex-end;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
       * {
         background: none;
         border: none;
+        text-decoration: none;
         cursor: pointer;
         font-size: 1.5rem;
         margin-inline-start: 3px;
