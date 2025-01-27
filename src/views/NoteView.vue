@@ -1,5 +1,5 @@
 <script setup>
-import loadingComponentVue from '@/components/loadingComponent.vue'
+import loadingComponent from '@/components/loadingComponent.vue'
 import { useAuthStore, useNoteStore } from '@/stores/store'
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
