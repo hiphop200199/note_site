@@ -24,17 +24,19 @@ getNote(noteId)
 </script>
 
 <template>
-  <loading-component v-if="noteStore.isLoading"></loading-component>
-  <div v-else class="box-layout">
-    <button v-if="authStore.isLogin" id="delete-btn" @click="openModal">🚮</button>
-    <h1>{{ note.subject }}</h1>
-    <p>
-      {{ note.article }}
-    </p>
-    <section id="tags">
-      <!-- <span class="tag">#Normal</span><span class="tag">#HTML</span><span class="tag">#Css</span> -->
-    </section>
-    <span>{{ note.note_date }}</span>
+  <div class="box-layout">
+    <loading-component v-if="noteStore.isLoading"></loading-component>
+    <div v-else>
+      <button v-if="authStore.isLogin" id="delete-btn" @click="openModal">🚮</button>
+      <h1>{{ note.subject }}</h1>
+      <p>
+        {{ note.article }}
+      </p>
+      <section id="tags">
+        <!-- <span class="tag">#Normal</span><span class="tag">#HTML</span><span class="tag">#Css</span> -->
+      </section>
+      <span>{{ note.note_date }}</span>
+    </div>
   </div>
   <dialog ref="deleteModal">
     <div id="box">
