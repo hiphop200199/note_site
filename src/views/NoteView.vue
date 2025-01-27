@@ -37,6 +37,7 @@ getNote(noteId)
     <div id="box">
       <button id="close-modal" @click="closeModal">✖</button>
       <p>Delete?</p>
+      <span>{{ noteStore.message }}</span>
       <section id="buttons">
         <button @click="handleDelete">Yes</button>
         <button @click="closeModal">No</button>
@@ -112,6 +113,9 @@ dialog {
       text-align: center;
       font-size: 2rem;
       font-weight: 700;
+    }
+    span {
+      color: general.$darkGreen;
     }
     #close-modal {
       position: relative;

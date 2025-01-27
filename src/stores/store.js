@@ -137,6 +137,7 @@ export const useNoteStore = defineStore('note', () => {
       .catch((err) => console.log(err))
   }
   const del = (id) => {
+    message.value = 'wait...'
     isLoading.value = true
     myAxios
       .post('/api/delete', {
