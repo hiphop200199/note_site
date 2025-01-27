@@ -6,7 +6,7 @@ const noteStore = useNoteStore()
 const notes = computed(() => noteStore.notes)
 
 const getNotes = () => {
-  noteStore.getNotes()
+  noteStore.getList()
 }
 
 getNotes()

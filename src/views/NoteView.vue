@@ -8,7 +8,7 @@ const note = computed(() => noteStore.note)
 const noteId = route.params.id
 
 const getNote = (id) => {
-  noteStore.getNote(id)
+  noteStore.get(id)
 }
 getNote(noteId)
 </script>

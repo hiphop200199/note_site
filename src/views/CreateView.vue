@@ -4,11 +4,10 @@ import { ref } from 'vue'
 const subject = ref('')
 const content = ref('')
 const date = ref('')
-const images = ref('')
 const noteStore = useNoteStore()
 const handleSubmit = ($event) => {
   $event.preventDefault()
-  noteStore.add(subject.value, content.value, date.value, images.value.files)
+  noteStore.add(subject.value, content.value, date.value)
 }
 </script>
 
