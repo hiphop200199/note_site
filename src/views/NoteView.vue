@@ -121,6 +121,8 @@ dialog {
       font-weight: 700;
     }
     span {
+      align-self: center;
+      text-align: center;
       color: general.$darkGreen;
     }
     #close-modal {
