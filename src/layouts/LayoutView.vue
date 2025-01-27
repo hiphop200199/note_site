@@ -18,7 +18,7 @@ const handleLogout = () => {
             : "It's time to write some notes."
         }}
       </p>
-      <section id="function">
+      <section id="function" v-if="authStore.isLogin">
         <router-link to="/create">💡</router-link>
         <button id="logout" @click="handleLogout">🚪</button>
       </section>

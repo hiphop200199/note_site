@@ -112,15 +112,24 @@ export const useNoteStore = defineStore('note', () => {
       })
       .catch((err) => console.log(err))
   }
-  const add = (subject, content, date) => {
-    message.value = 'wait...'
+  const add = (subject, content, date, images) => {
+    let data = new FormData()
+    data.append('user_id', sessionStorage.getItem('id'))
+    data.append('subject', subject)
+    data.append('content', content)
+    data.append('date', date)
+    for (let i = 0; i < images.length; i++) {
+      data.append('images', images[i])
+    }
+    console.log(data.getAll('images'))
+
+    /*  message.value = 'wait...'
     isLoading.value = true
     myAxios
-      .post('/api/add', {
-        user_id: sessionStorage.getItem('id'),
-        subject: subject,
-        content: content,
-        date: date,
+      .post('/api/add', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       })
       .then((res) => {
         if (res.data == 2) {
@@ -134,7 +143,7 @@ export const useNoteStore = defineStore('note', () => {
         console.log(res)
         location = '/list'
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err)) */
   }
   return {
     isLoading,

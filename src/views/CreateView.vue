@@ -4,10 +4,11 @@ import { ref } from 'vue'
 const subject = ref('')
 const content = ref('')
 const date = ref('')
+const images = ref('')
 const noteStore = useNoteStore()
 const handleSubmit = ($event) => {
   $event.preventDefault()
-  noteStore.add(subject.value, content.value, date.value)
+  noteStore.add(subject.value, content.value, date.value, images.value.files)
 }
 </script>
 
@@ -17,9 +18,12 @@ const handleSubmit = ($event) => {
       <h1>New note.</h1>
       <input type="text" v-model="subject" placeholder="subject..." />
       <textarea v-model="content" placeholder="content..."></textarea>
-      <!-- <p>images.</p>
-      <input type="file" name="" id="" multiple />
-      <p>tags.</p>
+      <p>images.</p>
+      <input type="file" id="upload-img" ref="images" multiple />
+      <label for="upload-img" id="upload-label">
+        <img src="/src/assets/photo.png" />
+      </label>
+      <!--  <p>tags.</p>
       <input type="checkbox" v-model="tags" class="tags" value="1" />
       <input type="checkbox" v-model="tags" class="tags" value="2" />
       <input type="checkbox" v-model="tags" class="tags" value="3" />
@@ -36,6 +40,7 @@ const handleSubmit = ($event) => {
 <style lang="scss" scoped>
 @use '../assets/general.scss';
 form {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,6 +51,17 @@ form {
     color: general.$darkGreen;
     margin-block-end: 20px;
     font-size: 36px;
+  }
+  input[type='file'] {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  #upload-label {
+    cursor: pointer;
+    img {
+      max-width: 200px;
+    }
   }
 
   :not(h1) {
