@@ -22,21 +22,11 @@ onMounted(() => {
       <h1>Get an account!</h1>
       <input type="text" placeholder="name..." v-model="name" required maxlength="255" />
       <input type="email" placeholder="email..." v-model="account" required maxlength="255" />
-      <input
-        type="password"
-        placeholder="password..."
-        v-model="password"
-        pattern="[A-Z]{1,}[a-z]{1,}[0-9]{1,}\W{1,}"
-        title="須結合大小寫英文字母及數字以及特殊符號至少一個"
-        required
-        minlength="8"
-      />
+      <input type="password" placeholder="password..." v-model="password" required minlength="8" />
       <input
         type="password"
         placeholder="confirm password..."
         v-model="password_confirmation"
-        pattern="[A-Z]{1,}[a-z]{1,}[0-9]{1,}\W{1,}"
-        title="須結合大小寫英文字母及數字以及特殊符號至少一個"
         required
         minlength="8"
       />

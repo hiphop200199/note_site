@@ -4,6 +4,7 @@ import RegisterView from '@/views/RegisterView.vue'
 import CreateView from '@/views/CreateView.vue'
 import ListView from '@/views/ListView.vue'
 import NoteView from '@/views/NoteView.vue'
+import { useAuthStore } from '@/stores/store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,14 +13,6 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
     },
     {
       path: '/list',
@@ -42,6 +35,20 @@ const router = createRouter({
       component: CreateView,
     },
   ],
+})
+
+//預防沒權限的情況下瀏覽某些路由
+router.beforeEach(async (to) => {
+  const authstore = useAuthStore()
+  if (
+    // make sure the user is authenticated
+    authstore.isLogin === null &&
+    // ❗️ Avoid an infinite redirect
+    (to.name === 'create' || to.name === 'list' || to.name === 'note')
+  ) {
+    // redirect the user to the login page
+    return { name: 'home' }
+  }
 })
 
 export default router
