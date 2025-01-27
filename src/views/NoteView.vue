@@ -1,7 +1,9 @@
 <script setup>
+import loadingComponentVue from '@/components/loadingComponent.vue'
 import { useAuthStore, useNoteStore } from '@/stores/store'
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
+
 const authStore = useAuthStore()
 const noteStore = useNoteStore()
 const route = useRoute()
@@ -22,7 +24,8 @@ getNote(noteId)
 </script>
 
 <template>
-  <div class="box-layout">
+  <loading-component v-if="noteStore.isLoading"></loading-component>
+  <div v-else class="box-layout">
     <button v-if="authStore.isLogin" id="delete-btn" @click="openModal">🚮</button>
     <h1>{{ note.subject }}</h1>
     <p>

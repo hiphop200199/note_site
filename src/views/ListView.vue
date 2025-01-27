@@ -1,4 +1,5 @@
 <script setup>
+import LoadingComponent from '@/components/loadingComponent.vue'
 import { useNoteStore } from '@/stores/store'
 import { computed } from 'vue'
 
@@ -15,7 +16,8 @@ getNotes()
 <template>
   <div class="box-layout">
     <h1>Note list.</h1>
-    <section id="note-container">
+    <loading-component v-if="noteStore.isLoading"></loading-component>
+    <section v-else id="note-container">
       <router-link :to="'/note/' + note.id" v-for="note in notes" :id="note.id" :key="note.id">{{
         note.subject
       }}</router-link>
