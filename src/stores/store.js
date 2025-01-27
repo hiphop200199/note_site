@@ -132,7 +132,7 @@ export const useNoteStore = defineStore('note', () => {
         message.value = ''
         isLoading.value = false
         console.log(res)
-        location = '/list'
+        // location = '/list'
       })
       .catch((err) => console.log(err))
   }
