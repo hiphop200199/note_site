@@ -50,7 +50,7 @@ const handleLogout = () => {
     background-color: general.$lightGreen;
     #function {
       position: absolute;
-      right: 0;
+      right: 2%;
       top: 50%;
       transform: translateY(-50%);
       * {

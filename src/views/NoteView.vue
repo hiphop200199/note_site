@@ -61,7 +61,7 @@ getNote(noteId)
   }
   #delete-btn {
     position: absolute;
-    right: 0;
+    right: 2%;
     top: 0;
     background: none;
     border: none;
