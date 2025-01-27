@@ -14,6 +14,9 @@ const deleteModal = ref(null)
 const getNote = (id) => {
   noteStore.get(id)
 }
+const handleDelete = () => {
+  noteStore.del(noteId)
+}
 const openModal = () => {
   deleteModal.value.showModal()
 }
