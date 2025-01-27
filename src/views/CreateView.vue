@@ -18,17 +18,6 @@ const handleSubmit = ($event) => {
       <h1>New note.</h1>
       <input type="text" v-model="subject" placeholder="subject..." />
       <textarea v-model="content" placeholder="content..."></textarea>
-      <p>images.</p>
-      <input type="file" id="upload-img" ref="images" multiple />
-      <label for="upload-img" id="upload-label">
-        <img src="/src/assets/photo.png" />
-      </label>
-      <!--  <p>tags.</p>
-      <input type="checkbox" v-model="tags" class="tags" value="1" />
-      <input type="checkbox" v-model="tags" class="tags" value="2" />
-      <input type="checkbox" v-model="tags" class="tags" value="3" />
-      <input type="checkbox" v-model="tags" class="tags" value="4" />
-      <input type="checkbox" v-model="tags" class="tags" value="5" /> -->
       <p>date.</p>
       <input type="date" v-model="date" />
       <p>{{ noteStore.message }}</p>
