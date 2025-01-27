@@ -67,6 +67,7 @@ const handleLogout = () => {
     }
   }
   main {
+    position: relative;
     display: grid;
     place-items: center;
     min-height: 90dvh;

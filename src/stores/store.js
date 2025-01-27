@@ -136,6 +136,26 @@ export const useNoteStore = defineStore('note', () => {
       })
       .catch((err) => console.log(err))
   }
+  const del = (id) => {
+    isLoading.value = true
+    myAxios
+      .post('/api/delete', {
+        id: id,
+      })
+      .then((res) => {
+        if (res.data[0].rtn == 2) {
+          message.value = 'database error.'
+          isLoading.value = false
+          console.log(res)
+          return
+        }
+        message.value = ''
+        isLoading.value = false
+        console.log(res)
+        location = '/list'
+      })
+      .catch((err) => console.log(err))
+  }
   return {
     isLoading,
     notes,
@@ -144,5 +164,6 @@ export const useNoteStore = defineStore('note', () => {
     getList,
     get,
     add,
+    del,
   }
 })

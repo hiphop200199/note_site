@@ -1,20 +1,29 @@
 <script setup>
-import { useNoteStore } from '@/stores/store'
-import { computed } from 'vue'
+import { useAuthStore, useNoteStore } from '@/stores/store'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
+const authStore = useAuthStore()
 const noteStore = useNoteStore()
 const route = useRoute()
 const note = computed(() => noteStore.note)
 const noteId = route.params.id
+const deleteModal = ref(null)
 
 const getNote = (id) => {
   noteStore.get(id)
+}
+const openModal = () => {
+  deleteModal.value.showModal()
+}
+const closeModal = () => {
+  deleteModal.value.close()
 }
 getNote(noteId)
 </script>
 
 <template>
   <div class="box-layout">
+    <button v-if="authStore.isLogin" id="delete-btn" @click="openModal">🚮</button>
     <h1>{{ note.subject }}</h1>
     <p>
       {{ note.article }}
@@ -24,15 +33,33 @@ getNote(noteId)
     </section>
     <span>{{ note.note_date }}</span>
   </div>
+  <dialog ref="deleteModal">
+    <div id="box">
+      <button id="close-modal" @click="closeModal">✖</button>
+      <p>Delete?</p>
+      <section id="buttons">
+        <button @click="handleDelete">Yes</button>
+        <button @click="closeModal">No</button>
+      </section>
+    </div>
+  </dialog>
 </template>
 <style lang="scss" scoped>
 @use '../assets/general.scss';
 .box-layout {
-  position: relative;
   width: 80%;
   max-width: 400px;
   * {
     margin-block: 5px;
+  }
+  #delete-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
   }
   h1 {
     color: general.$darkGreen;
@@ -65,6 +92,49 @@ getNote(noteId)
     color: general.$darkGreen;
     text-align: end;
     font-weight: 500;
+  }
+}
+dialog {
+  width: 200px;
+  height: 180px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: general.$lightColor;
+  border: 3px solid general.$darkGreen;
+  #box {
+    display: flex;
+    flex-direction: column;
+    p {
+      align-self: center;
+      color: general.$darkGreen;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    #close-modal {
+      position: relative;
+      right: 5px;
+      align-self: flex-end;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: general.$darkGreen;
+    }
+    #buttons {
+      align-self: center;
+      * {
+        background: general.$darkGreen;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: general.$lightColor;
+        padding-inline: 8px;
+        margin-inline: 3px;
+      }
+    }
   }
 }
 </style>
