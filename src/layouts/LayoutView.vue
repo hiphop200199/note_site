@@ -44,7 +44,9 @@ const handleLogout = () => {
     min-height: 5dvh;
   }
   p {
-    font-size: 18px;
+    font-size: 16px;
+    white-space: nowrap;
+    text-align: center;
   }
   header {
     background-color: general.$lightGreen;
